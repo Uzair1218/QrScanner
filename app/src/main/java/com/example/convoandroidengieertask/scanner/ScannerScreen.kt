@@ -34,8 +34,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
-import com.example.convoandroidengieertask.permission.FeatureThatRequiresCameraPermission
-import com.example.convoandroidengieertask.permission.NeedCameraPermissionScreen
+import com.example.convoandroidengieertask.permission.RequiresCameraPermission
+import com.example.convoandroidengieertask.permission.CameraPermissionScreen
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 import kotlinx.coroutines.Dispatchers
@@ -48,7 +48,7 @@ typealias AndroidSize = android.util.Size
 @Composable
 @ExperimentalGetImage
 fun QrScanningScreen(
-    viewModel: QrScanViewModel
+    viewModel: ScannerViewModel
 ) {
     val uiState by viewModel.uiState.collectAsState()
 
@@ -86,7 +86,7 @@ fun QrScanningScreen(
     LaunchedEffect(targetRect) {
         imageAnalysis.setAnalyzer(
             Dispatchers.Default.asExecutor(),
-            QrCodeAnalyzer(
+            ScannerAnalyzer(
                 targetRect = targetRect.toAndroidRect(),
                 previewView = previewView,
             ) { result ->
@@ -108,9 +108,9 @@ fun QrScanningScreen(
         preview.setSurfaceProvider(previewView.surfaceProvider)
     }
 
-    FeatureThatRequiresCameraPermission(
+    RequiresCameraPermission(
         deniedContent = { status ->
-            NeedCameraPermissionScreen(
+            CameraPermissionScreen(
                 requestPermission = cameraPermissionState::launchPermissionRequest,
                 shouldShowRationale = status.shouldShowRationale
             )
@@ -133,7 +133,7 @@ fun QrScanningScreen(
 private fun Content(
     modifier: Modifier,
     previewView: PreviewView,
-    uiState: QrScanUIState,
+    uiState: ScannerState,
     onTargetPositioned: (Rect) -> Unit,
 ) {
     Box(modifier = modifier.fillMaxSize()) {

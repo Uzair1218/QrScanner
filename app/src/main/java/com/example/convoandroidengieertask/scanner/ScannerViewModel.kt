@@ -11,10 +11,10 @@ import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
-class QrScanViewModel @Inject constructor(
+class ScannerViewModel @Inject constructor(
 ) : ViewModel() {
-    private val _uiState: MutableStateFlow<QrScanUIState> = MutableStateFlow(QrScanUIState())
-    val uiState: StateFlow<QrScanUIState> = _uiState
+    private val _uiState: MutableStateFlow<ScannerState> = MutableStateFlow(ScannerState())
+    val uiState: StateFlow<ScannerState> = _uiState
 
     fun onQrCodeDetected(result: String) {
         Log.d("QR Scanner", result)
@@ -26,7 +26,7 @@ class QrScanViewModel @Inject constructor(
     }
 }
 
-data class QrScanUIState(
+data class ScannerState(
     val loading: Boolean = false,
     val detectedQR: String = "",
     val targetRect: Rect = Rect.Zero,

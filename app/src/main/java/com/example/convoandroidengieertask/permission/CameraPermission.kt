@@ -11,7 +11,7 @@ import com.google.accompanist.permissions.rememberPermissionState
 
 @OptIn(ExperimentalPermissionsApi::class, ExperimentalAnimationApi::class)
 @Composable
-fun FeatureThatRequiresCameraPermission(
+fun RequiresCameraPermission(
     deniedContent: @Composable (PermissionStatus.Denied) -> Unit,
     grantedContent: @Composable () -> Unit
 ) {

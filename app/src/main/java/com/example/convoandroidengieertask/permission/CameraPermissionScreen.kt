@@ -10,7 +10,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun NeedCameraPermissionScreen(
+fun CameraPermissionScreen(
     requestPermission: () -> Unit,
     shouldShowRationale: Boolean,
 ) {

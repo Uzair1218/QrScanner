@@ -18,7 +18,7 @@ import com.google.mlkit.vision.common.InputImage
 import kotlin.math.max
 
 @ExperimentalGetImage
-class QrCodeAnalyzer(
+class ScannerAnalyzer(
     private val targetRect: Rect,
     private val previewView: PreviewView,
     private val onQrCodeDetected: (String) -> Unit,
